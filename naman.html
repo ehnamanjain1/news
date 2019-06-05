@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8"/>
+<body>
+
+<h2>NEWS :-</h2>
+
+<form id='data'>
+<input type='search' name='searchBar' placeholder='search' />
+<button>Search</button>
+</form>
+
+<div id="demo"></div>
+
+
+
+<script>
+
+document.querySelector('#data').addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log(e.target.elements.searchBar.value)
+
+ let location = e.target.elements.searchBar.value
+
+ document.querySelector('#demo').innerHTML = ''
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+for(var i=0; i<20; i++){
+
+
+
+    //title
+let c = document.createElement('h4')
+    c.textContent = myObj.articles[i].title
+document.querySelector('#demo').appendChild(c)
+
+
+
+
+//-----------image
+let p = document.createElement('img')
+p.src = myObj.articles[i].urlToImage
+document.querySelector('#demo').appendChild(p)
+
+
+
+
+//---- description
+let d = document.createElement('p')
+    d.textContent = myObj.articles[i].content
+document.querySelector('#demo').appendChild(d)
+}
+  }
+};
+xmlhttp.open("GET", "https://newsapi.org/v2/everything?q=" + location +"&sortBy=publishedAt&apiKey=eafd938eb2e54e668ae2f53cf7924d19", true);
+xmlhttp.send();
+
+
+
+
+})
+
+
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+for(var i=0; i<20; i++){
+
+
+
+    //title
+let c = document.createElement('h4')
+    c.textContent = myObj.articles[i].title
+document.querySelector('#demo').appendChild(c)
+
+
+
+
+//-----------image
+let p = document.createElement('img')
+p.src = myObj.articles[i].urlToImage
+document.querySelector('#demo').appendChild(p)
+
+
+
+
+//---- description
+let d = document.createElement('p')
+    d.textContent = myObj.articles[i].content
+document.querySelector('#demo').appendChild(d)
+}
+  }
+};
+xmlhttp.open("GET", "https://newsapi.org/v2/everything?q=jaipur&sortBy=publishedAt&apiKey=73cc133b91a54d318a165fa9329d1216", true);
+xmlhttp.send();
+
+</script>
+
+<p>NAMAN JAIN</p>
+
+</body>
+</html>
